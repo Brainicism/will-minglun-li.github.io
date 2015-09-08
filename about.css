@@ -1,0 +1,64 @@
+.headerbackground{
+	background-color: #0066CC;
+	background-image: url("img/sky.jpg");
+	background-size: cover;
+	overflow: hidden;
+}
+
+.titleheader{
+	font-size: 50px;
+	font-weight: bold;
+	font-family: 'Bitter';
+	text-align: center;
+}
+
+.mypic{
+	float:none;
+	width:100%;
+}
+
+.mypic img {
+	width:20%;
+	padding: 30px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.maincontent{
+	text-align: center;
+	font-size: 22px;
+	position: relative;
+	line-height: 150%;
+	padding: 0 200px 60px 200px;
+}
+
+.maincontent a{
+	text-decoration: none;
+	color: #2A5DB0;
+}
+
+.maincontent a:hover{
+	text-decoration: underline;
+}
+
+/* For Mobile and Smaller Screen Resolutions */
+@media all and (max-width:1100px) {
+	.maincontent {
+		padding: 0 100px 60px 100px;
+	}
+}
+
+@media all and (max-width:900px) {
+	.maincontent {
+		font-size: 18px;
+		padding: 0 100px 60px 100px;
+	}
+}
+
+@media all and (max-width:500px) {
+	.maincontent {
+		font-size: 15px;
+		padding: 0 0 60px 0;
+	}
+}

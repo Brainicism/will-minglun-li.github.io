@@ -1,0 +1,429 @@
+* {
+	font-family: 'Open Sans', sans-serif, Verdana;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #f1f0ff;
+	height: 100%;
+	width: 100%;
+}
+
+.fadeIntro {
+    opacity:0;
+}
+
+/* Navigation Bar + Links */
+
+.headerspaceholder {
+	display: inline-block;
+	height: 70px;
+}
+
+.header{
+	display:inline-block;
+	position: fixed;
+	background-color: #CA7C06;
+	width: 100%;
+	z-index: 500;
+}
+
+.name {
+	display: inline-block;
+	float: left;
+	height: 75px;
+	width: 200px;
+	line-height: 75px;
+	background-color: #CA7C06;
+	
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	font-size: 40px;
+	font-weight: bold;
+	font-family: Georgia;
+}
+
+.nav {
+	display: inline-block;
+	float: right;
+	height: 75px;
+	line-height: 75px;
+	width: 150px;
+	background-color: #CA7C06;
+	
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	
+	transition: background-color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out;
+	-moz-transition: background-color 0.2s ease-in-out;
+}
+
+.nav:hover {
+	background-color: #FF9933;
+	color: black;
+}
+/* Main Contents */
+h2{
+	font-family: 'Bitter';
+	font-weight: 600;
+	font-size: 50px;
+	padding: 50px 0 50px 180px;
+}
+
+.intro {
+	width: 100%;
+	text-align: center;
+	background-color: white;
+}
+
+.intro h1{
+	font-family: 'Bitter';
+	font-weight: 800;
+	font-size: 150px;
+}
+
+.intro p{
+	font-size: 20px;
+	line-height: 1.5;
+	margin: 40px 0;
+}
+
+.paddingx {
+	padding: 50px 200px 180px 180px;
+}
+
+.paddingy {
+	padding: 50px 200px 180px 180px;
+	clear: both;
+}
+
+.size {
+	font-size: 20px;
+}
+
+.experience{
+	background-color: white;
+	clear: both;
+}
+
+.experience p{
+	text-align: center;
+	font-size: 20px;
+	padding: 40px 350px 40px 380px;
+}
+
+.experience a{
+	text-decoration: none;
+	color: #2A5DB0;
+}
+
+.experience a:hover{
+	color: #CA7C06;
+}
+
+.projects p{
+	font-size: 20px;
+}
+
+.projects a{
+	text-decoration: none;
+	color: #2A5DB0;
+}
+
+.projects a:hover{
+	color: #CA7C06;
+}
+
+.projects img{
+	height: 20px;
+	width: 20px;
+}
+
+.timeline {
+	padding: 8px 0 8px 2px;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+	width: 75%;
+}
+
+.padding1 {
+	padding: 50px 200px 180px 180px;
+}
+
+.padding2 {
+	padding: 50px 200px 180px 180px;
+	clear: both;
+}
+
+.padding3 {
+	padding: 50px 200px 220px 180px;
+	clear: both;
+}
+
+/* Footer */
+.footer {
+	background-color: #304a6a;
+	background-image: url("img/ocean.jpg");
+	background-size: cover;
+	background-position: center;
+	padding: 20px 0 30px 0;
+	float:none;
+	width: 100%;
+	clear: both;
+}
+
+.footer p {
+	font-family: 'Lora';
+	font-size: 25px;
+	color: white;
+	text-align: center;
+	padding: 10px 0 40px 0;
+}
+
+.footer a{
+	text-decoration: none;
+	color: white;
+}
+
+.middle {
+	width: 250px;
+	padding: 20px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.button img{
+	height: 50px;
+	width: 50px;
+}
+
+/* Small Screen Menu Bar */
+.smallnav {
+	margin: 20px auto;
+	width: 155px;
+}
+
+.smallnav ul {
+	position: relative;
+	font-weight: 900;
+}
+
+.smallnav ul li {
+	position: relative;
+	list-style: none;
+	cursor: pointer;
+}
+
+.smallnav ul li ul {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+.smallnav ul .clicker {
+	position: relative;
+	background: #CA7C06;
+	color: white;
+}
+
+.smallnav ul .clicker:hover,.smallnav ul .active {
+	background: #FF9933;
+	color: black;
+}
+
+.smallnav ul li a {                									/* OVERHERE FOR MENU FIX*/
+	transition: background-color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out;
+	-moz-transition: background-color 0.2s ease-in-out;
+	display: block;
+	padding: 7px 10px 8px 40px;
+	background: #CA7C06;
+	color: white;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.smallnav ul li a:hover {
+	background: #FF9933;
+	color: black;
+}
+
+.headermenu {
+	display: none;
+	position: fixed;
+	background-color: #CA7C06;
+	width: 100%;
+	z-index: 500;
+}
+
+/* For Mobile and Smaller Screen Resolutions */
+@media all and (max-width:1300px) { 
+	.paddingx {
+		padding: 50px 65px 180px 75px;
+		font-size: 14px;
+	}
+	.paddingy {
+		padding: 50px 65px 180px 75px;
+		font-size:14px;
+	}
+	.size {
+		font-size: 14px;
+	}
+	.padding1 {
+		padding: 50px 65px 180px 75px;
+		font-size: 14px;
+	}
+	.padding1 p{
+		font-size: 14px;
+	}
+	.padding2 {
+		padding: 50px 65px 180px 75px;
+		font-size: 14px;
+	}
+	.padding2 p{
+		font-size: 14px;
+	}
+	.padding3 {
+		padding: 50px 65px 220px 75px;
+		font-size: 14px;
+	}
+	.padding3 p{
+		font-size: 14px;
+	}
+	.experience p {
+		font-size: 18px;
+		padding: 40px 250px 40px 250px;
+	}
+	h2{
+		font-size: 40px;
+		padding: 50px 0 50px 75px;
+	}
+}
+
+@media all and (max-width:930px) {
+	.intro h1{
+		font-size: 100px;
+	}
+	.intro p{
+		font-size: 15px;
+	}
+	.paddingx {
+		padding: 30px 0 90px 0;
+		font-size: 12px;
+	}
+	.paddingy {
+		padding: 30px 0 90px 0;
+		font-size: 12px;
+	}
+	.size {
+		font-size: 12px;
+	}
+	.padding1 {
+		padding: 30px 0 90px 0;
+		font-size: 12px;
+	}
+	.padding1 p{
+		font-size: 12px;
+	}
+	.padding2 {
+		padding: 30px 0 90px 0;
+		font-size: 12px;
+	}
+	.padding2 p{
+		font-size: 12px;
+	}
+	.padding3 {
+		padding: 30px 0 110px 0;
+		font-size: 12px;
+	}
+	.padding3 p{
+		font-size: 12px;
+	}
+	.experience p {
+		font-size: 13px;
+		padding: 30px 100px 30px 100px;
+	}
+	h2{
+		font-size: 30px;
+		padding: 30px 0 30px 55px;
+	}
+	.footer p {
+		font-size: 15px;
+		padding: 10px 0 20px 0;
+	}
+	.middle {
+		width: 140px;
+		padding: 10px;
+	}
+	.button img{
+		height: 30px;
+		width: 30px;
+	}
+	.header {
+		display: none;
+	}
+	.headermenu{
+		display: block;
+	}
+}
+
+@media all and (max-width:700px){
+	.left {
+		float: none;
+		padding-bottom: 30px;
+	}
+	.right{
+		float: none;
+	}
+	.paddingx {
+		padding: 30px 0 40px 30px;
+	}
+	.paddingy {
+		padding: 30px 0 40px 30px;
+	}
+	.padding1 {
+		padding: 30px 0 40px 30px;
+	}
+	.padding2 {
+		padding: 30px 0 40px 30px;
+	}
+	.padding3 {
+		padding: 30px 0 60px 30px;
+	}
+	.experience p {
+		padding: 20px 40px 20px 40px;
+	}
+	h2{
+		font-size: 20px;
+		padding: 20px 0 20px 35px;
+	}
+}
+
+@media all and (max-width:650px) {
+	.intro h1{
+		font-size: 60px;
+	}
+	.intro p{
+		font-size: 13px;
+	}
+	.name {
+		font-size: 30px;
+		width: 120px;
+	}
+	.smallnav {
+		float: right;
+	}
+}
