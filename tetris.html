@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title> Tetris - JavaScript </title>
+	<link rel = "stylesheet" type = "text/css" href = "css/tetris.css">	
+	<link rel = "shortcut icon" href = "img/tetris/ticon.jpg" />
+	
+	<meta name = "viewport" content = "user-scalable = no, initial-scale = 0.5, maximum-scale = 1, user-scalable = 0" />
+	
+	<meta name = "apple-mobile-web-app-capable" content = "yes" />
+	<meta name = "apple-mobile-web-app-status-bar-style" content = "black-translucent" />
+	
+	<link href= "http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel='stylesheet' type='text/css'> 
+</head>
+
+<body>
+	<div id = "board">
+		<canvas id = "gameCanvas" width = "320" height = "640"></canvas>
+	</div>
+	
+	<div id = "score">
+		<p> Score: <span id = "scores"></span> </p>
+		<p> Lines Cleared: <span id = "lines"></span> </p>
+	</div>
+	
+	<script type = "text/javascript" src = "js/pieces.js"></script>
+	<script type = "text/javascript" src = "js/BulkImageLoader.js"></script>
+	<script type = "text/javascript" src = "js/MainFunctions.js"></script>
+	<script type = "text/javascript" src = "js/KeyboardInput.js"></script>
+
+	<script type = "text/javascript">
+		// Declaring some global variables that will be used for later
+		var rows = 20, column = 10, SIZE = 32;
+		var canvas, blockImage, backgroundImage, gameOverImage, currentPiece, context, gameData, imgLoader, prevTime, currentTime, isGameOver, lineSpan, currentLines, scores, scoreSpan;
+		var touchX, touchY, touchID;
+		
+		window.onload = onReady;
+		
+		function onReady(){	
+			imgLoader = new BulkImageLoader();	// Calls the BulkImageLoader file
+			
+			// Adds the images through function in BulkImageLoader
+			imgLoader.addImage("img/tetris/blocks.png", "blocks");
+			imgLoader.addImage("img/tetris/bg.png", "bg");
+			imgLoader.addImage("img/tetris/over.png", "GameOver");
+			
+			imgLoader.onReadyCallback = onImagesLoaded;
+			
+			imgLoader.loadImages();	// Loads the images through function in BulkImageLoader
+			
+			canvas = document.getElementById("gameCanvas");
+			context = canvas.getContext("2d");
+			scoreSpan = document.getElementById("scores");
+			lineSpan = document.getElementById("lines");
+			
+			
+			// Set the game time to 0
+			prevTime = 0;
+			currentTime = 0;
+			
+			document.onkeydown = getInput;
+		}
+		
+		// Stores the Images added into the global variables
+		function onImagesLoaded(e){
+			blockImage = imgLoader.getImageAtIndex(0);		// Block is at first index
+			backgroundImage = imgLoader.getImageAtIndex(1); // Background is at second index
+			gameOverImage = imgLoader.getImageAtIndex(2);  // GameOveri is at third index
+			
+			initGame(); // Initialize the game board
+		}
+		
+		// Draw game board function
+		function drawBoard(){
+			context.drawImage(backgroundImage, 0, 0, 320, 640, 0, 0, 320, 640);
+			
+			// The board should be empty at the beginning, so clear the board if it's not empty
+			for(var r = 0; r < rows; r++){
+				for(var c = 0; c < column; c++){
+					if(gameData[r][c] != 0){
+						context.drawImage(blockImage, (gameData[r][c] - 1) * SIZE, 0, SIZE, SIZE, c * SIZE, r * SIZE, SIZE, SIZE);
+					}
+				}
+			}
+		}
+		
+		// Draws the tetris pieces
+		function drawPiece(p){
+			var drawX = p.gridX, drawY = p.gridY, state = p.currentState;
+			
+			// Loop through the state of the piece and draw it out accordingly
+			for(var r = 0, len = p.states[state].length; r < len; r++){
+				for(var c = 0, len2 = p.states[state][r].length; c < len2; c++){
+					if(p.states[state][r][c] == 1 && drawY >= 0){		
+						context.drawImage(blockImage, p.color * SIZE, 0, SIZE, SIZE, drawX * SIZE, drawY * SIZE, SIZE, SIZE);
+					}
+					drawX++;	// Increment X by 1
+				}
+				drawX = p.gridX;	// Reset X
+				drawY++;			// Increment Y by 1
+			}
+		}
+	</script>
+</body>
+
+</html>
