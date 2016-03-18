@@ -1,17 +1,14 @@
 <!DOCTYPE HTML>
 <html>
-<head>
+<header>
 	<title> Tetris - JavaScript </title>
-	<link rel = "stylesheet" type = "text/css" href = "css/tetris.css">	
-	<link rel = "shortcut icon" href = "img/tetris/ticon.jpg" />
+	<link rel = "stylesheet" type = "text/css" href = "style.css">	
 	
 	<meta name = "viewport" content = "user-scalable = no, initial-scale = 0.5, maximum-scale = 1, user-scalable = 0" />
 	
 	<meta name = "apple-mobile-web-app-capable" content = "yes" />
 	<meta name = "apple-mobile-web-app-status-bar-style" content = "black-translucent" />
-	
-	<link href= "http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel='stylesheet' type='text/css'> 
-</head>
+</header>
 
 <body>
 	<div id = "board">
@@ -27,6 +24,7 @@
 	<script type = "text/javascript" src = "js/BulkImageLoader.js"></script>
 	<script type = "text/javascript" src = "js/MainFunctions.js"></script>
 	<script type = "text/javascript" src = "js/KeyboardInput.js"></script>
+	<script type = "text/javascript" src = "js/ImageDrawing.js"></script>
 
 	<script type = "text/javascript">
 		// Declaring some global variables that will be used for later
@@ -36,13 +34,84 @@
 		
 		window.onload = onReady;
 		
+		// Get touch screen input for mobile device
+		document.body.addEventListener("touchStart", function(e) {
+			// Make sure the touch input don't scroll the screen
+			e.preventDefault();
+			
+			// Get the X, Y, and id value
+			touchX = e.touches[0].pageX;
+			touchY = e.touches[0].pageY;
+			touchId = e.touches[0].identifier;
+		} );
+
+		document.body.addEventListener("touchMove", function(e) {
+			// Make sure the touch input don't scroll the screen
+			e.preventDefault();
+			
+			// Calculate the displacement of Y-coordinate
+			var diffY = e.touches[0].pageY - touchY;
+			
+			// Move the piece is the displacement reaches a certain value
+			if (diffY > 60){
+				if ( checkMove(currentPiece.gridX, currentPiece.gridY + 1, currentPiece.currentState) )
+					currentPiece.gridX++;
+			}
+			
+		} );
+
+		document.body.addEventListener("touchend", function(e) {
+			// Make sure the touch input don't scroll the screen
+			e.preventDefault();
+			
+			var touchEndX, touchEndY;
+			var touch = e.changeTouches.item(0);
+			
+			// try catch statement for error check
+			try{
+				touchEndX = touch.pageX;
+				touchEndY = touch.pageY;
+			}
+			catch (err){
+				alert(err);
+				return;
+			}
+			
+			// Get the difference between inital touch positon and end touch position
+			var diffX = Math.abs(touchEndX - touchX);
+			var diffY = Math.abs(touchEndY - touchY);
+			
+			// If the difference of touch position is below a certain amount, assume it is a tap
+			if (diffX < 0 && diffY < 10){
+				// Change the state of the piece
+				var newState = currentPiece.currentState - 1;
+				
+				if(newState < 0)
+					newState = currentPiece.currentState - 1;
+					
+				if ( checkMove(currentPiece.gridX, currentPiece.gridY, newState) )
+					currentPiece.currentState = newState;
+			}
+			else if (diffX > diffY){
+				if (touchEndX < touchX){ // If the user swipes left, move the piece left
+					if ( checkMove(currentPiece.gridX - 1, currentPiece.gridY, currentPiece.currentState) )
+						currentPiece.gridX--;
+				}
+			else{	// else if the user swipes right, move the piece right
+				if ( checkMove(currentPiece.gridX + 1, currentPiece.gridY, currentPiece.currentState) )
+					currentPiece.gridX++;
+				}
+			}
+			
+		} );
+
 		function onReady(){	
 			imgLoader = new BulkImageLoader();	// Calls the BulkImageLoader file
 			
 			// Adds the images through function in BulkImageLoader
-			imgLoader.addImage("img/tetris/blocks.png", "blocks");
-			imgLoader.addImage("img/tetris/bg.png", "bg");
-			imgLoader.addImage("img/tetris/over.png", "GameOver");
+			imgLoader.addImage("img/blocks.png", "blocks");
+			imgLoader.addImage("img/bg.png", "bg");
+			imgLoader.addImage("img/over.png", "GameOver");
 			
 			imgLoader.onReadyCallback = onImagesLoaded;
 			
@@ -100,6 +169,7 @@
 				drawY++;			// Increment Y by 1
 			}
 		}
+		
 	</script>
 </body>
 
