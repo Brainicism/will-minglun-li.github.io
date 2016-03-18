@@ -2,7 +2,7 @@
 <html>
 <header>
 	<title> Tetris - JavaScript </title>
-	<link rel = "stylesheet" type = "text/css" href = "style.css">	
+	<link rel = "stylesheet" type = "text/css" href = "css/tetris.css">	
 	
 	<meta name = "viewport" content = "user-scalable = no, initial-scale = 0.5, maximum-scale = 1, user-scalable = 0" />
 	
@@ -109,9 +109,9 @@
 			imgLoader = new BulkImageLoader();	// Calls the BulkImageLoader file
 			
 			// Adds the images through function in BulkImageLoader
-			imgLoader.addImage("img/blocks.png", "blocks");
-			imgLoader.addImage("img/bg.png", "bg");
-			imgLoader.addImage("img/over.png", "GameOver");
+			imgLoader.addImage("img/tetris/blocks.png", "blocks");
+			imgLoader.addImage("img/tetris/bg.png", "bg");
+			imgLoader.addImage("img/tetris/over.png", "GameOver");
 			
 			imgLoader.onReadyCallback = onImagesLoaded;
 			
