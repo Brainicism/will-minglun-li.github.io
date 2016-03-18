@@ -1,174 +1,154 @@
-// Representing the blocks using 1s and 0s
-// L shaped piece 
-function TetrisPieceL(){ 	
-	this.state1 = [ [1, 0],		// O
-					[1, 0],		// O
-					[1, 1] ];	// O O
+function LPiece()
+{
+	this.state1 = [ [1, 0],
+					[1, 0],
+					[1, 1] ];
 					
-	this.state2 = [ [0, 0, 1],		//     O
-			        [1, 1, 1] ];	// O O O
+	this.state2 = [ [0, 0, 1],
+					[1, 1, 1] ];
 					
-	this.state3 = [ [1, 1],		// O O
-					[0, 1],		//   O
-					[0, 1] ]; 	//   O
-					
-	this.state4 = [ [1, 1, 1],		// O O O
-					[1, 0, 0] ];	// O   
+	this.state3 = [ [1, 1],
+					[0, 1],
+					[0, 1] ];
 	
-	this.states = [this.state1, this.state2, this.state3, this.state4];
-	this.currentState = 0;
-	
-	this.color = 0;
-	this.gridX = 4;
-	this.gridY = -3;
-}
-
-// Reversed L shaped piece
-function TetrisPieceReverseL(){ 	
-	this.state1 = [ [0, 1],		// 	 O
-					[0, 1],		// 	 O
-					[1, 1] ];	// O O
+	this.state4 = [ [1, 1, 1],
+					[1, 0, 0] ];
 					
-	this.state2 = [ [1, 0, 0],		// O
-			        [1, 1, 1] ];	// O O O
-					
-	this.state3 = [ [1, 1],		// O O
-					[1, 0],		// O
-					[1, 0] ]; 	// O
-					
-	this.state4 = [ [1, 1, 1],		// O O O
-					[0, 0, 1] ];	//     O   
-	
-	this.states = [this.state1, this.state2, this.state3, this.state4];
-	this.currentState = 0;
+	this.states = [ this.state1, this.state2, this.state3, this.state4 ];
+	this.curState = 0;
 	
 	this.color = 0;
-	this.gridX = 4;
-	this.gridY = -3;
+	this.gridx = 4;
+	this.gridy = -3;
 }
 
-// The 2x2 Block shaped piece 
-function TetrisPieceBlock(){
-	this.state = [ [1, 1],		// O O
-				   [1, 1] ];	// O O
+function ReverseLPiece()
+{
+	this.state1 = [ [0, 1],
+					[0, 1],
+					[1, 1] ];
+					
+	this.state2 = [ [1, 1, 1],
+					[0, 0, 1] ];
+					
+	this.state3 = [ [1, 1],
+					[1, 0],
+					[1, 0] ];
 	
-	this.states = [this.state];
-	
-	this.currentState = 0;
-	this.color = 0; 
-	this.gridX = 4;
-	this.gridY = -2;
-}
-
-// Line shaped piece 
-function TetrisPieceLine(){
-	this.state1 = [ [1, 1, 1, 1] ];  // O O O O
-	
-	this.state2 = [ [1],	// O
-					[1],	// O
-					[1],	// O
-					[1] ];	// O
-	
-	this.states = [this.state1, this.state2];
-	this.currentState = 0;
+	this.state4 = [ [1, 0, 0],
+					[1, 1, 1] ];
+					
+	this.states = [ this.state1, this.state2, this.state3, this.state4 ];
+	this.curState = 0;
 	
 	this.color = 0;
-	this.gridX = 4;
-	this.gridY = -4;
+	this.gridx = 4;
+	this.gridy = -3;
 }
 
-// T shaped piece
-function TetrisPieceT(){
-	this.state1 = [ [1, 1, 1],		// O O O
-					[0, 1, 0] ];	//   O
+function BlockPiece()
+{
+	this.state1 = [ [1, 1],
+					[1, 1] ];
 					
-	this.state2 = [ [1, 0], 	// O
-					[1, 1],		// O O
-					[1, 0] ];   // O
-					
-	this.state3 = [ [0, 1, 0],		//   O 
-					[1, 1, 1] ];	// O O O
-					
-	this.state4 = [ [0, 1], 	//   O 
-					[1, 1],		// O O
-					[0, 1] ];   //   O
-					
-	this.states = [this.state1, this.state2, this.state3, this.state4];
-	this.currentState = 0;
+	this.states = [ this.state1 ];
+	this.curState = 0;
 	
 	this.color = 0;
-	this.gridX = 4;
-	this.gridY = -3;
+	this.gridx = 4;
+	this.gridy = -2;
 }
 
-// Z shaped piece
-function TetrisPieceZ(){
-	this.state1 = [ [1, 1, 0],		// O O
-					[0, 1, 1] ];	//   O O
+function LinePiece()
+{
+	this.state1 = [ [1],
+					[1],
+					[1],
+					[1] ];
 					
-	this.state2 = [ [0, 1],		//   O
-					[1, 1],		// O O
-					[1, 0]];	// O
+	this.state2 = [ [1,1,1,1] ];
 					
-	this.states = [this.state1, this.state2];
-	this.currentState = 0;
+	this.states = [ this.state1, this.state2 ];
+	this.curState = 0;
 	
 	this.color = 0;
-	this.gridX = 4;
-	this.gridY = -3;
+	this.gridx = 5;
+	this.gridy = -4;
 }
 
-// Reverse Z shaped piece
-function TetrisPieceReverseZ(){
-	this.state1 = [ [0, 1, 1],		//   O O
-					[1, 1, 0] ];	// O O 
+function TPiece()
+{
+	this.state1 = [ [1, 1, 1],
+					[0, 1, 0] ];
 					
-	this.state2 = [ [1, 0],		// O  
-					[1, 1],		// O O
-					[0, 1]];	//   O
+	this.state2 = [ [1, 0],
+					[1, 1],
+					[1, 0] ];
+	
+	this.state3 = [ [0, 1, 0],
+					[1, 1, 1] ];
 					
-	this.states = [this.state1, this.state2];
-	this.currentState = 0;
+	this.state4 = [ [0, 1],
+					[1, 1],
+					[0, 1] ];
+					
+	this.states = [ this.state1, this.state2, this.state3, this.state4 ];
+	this.curState = 0;
 	
 	this.color = 0;
-	this.gridX = 4;
-	this.gridY = -3;
+	this.gridx = 4;
+	this.gridy = -2;
 }
 
-// Get a random Tetris piece
-function getRandomPiece(){
-	var random = Math.floor(Math.random() * 7);
-	var piece; 
+function ZPiece()
+{
+	this.state1 = [ [1, 1, 0],
+					[0, 1, 1] ];
+					
+	this.state2 = [ [0, 1],
+					[1, 1],
+					[1, 0] ];
+					
+	this.states = [ this.state1, this.state2 ];
+	this.curState = 0;
 	
-	switch (random){
-		case 0: 
-			piece = new TetrisPieceL();
-			break;
-		
-		case 1: 
-			piece = new TetrisPieceBlock();
-			break;
-			
-		case 2:
-			piece = new TetrisPieceReverseZ();
-			break;
-			
-		case 3:
-			piece = new TetrisPieceReverseL();
-			break;
-			
-		case 4:
-			piece = new TetrisPieceLine();
-			break;
-			
-		case 5:
-			piece = new TetrisPieceT();
-			break;
-			
-		case 6:
-			piece = new TetrisPieceZ();
-			break;
-	}
+	this.color = 0;
+	this.gridx = 4;
+	this.gridy = -2;
+}
+
+function ReverseZPiece()
+{
+	this.state1 = [ [0, 1, 1],
+					[1, 1, 0] ];
+					
+	this.state2 = [ [1, 0],
+					[1, 1],
+					[0, 1] ];
+					
+	this.states = [ this.state1, this.state2 ];
+	this.curState = 0;
+	
+	this.color = 0;
+	this.gridx = 4;
+	this.gridy = -2;
+}
+
+function getRandomPiece()
+{
+	var result = Math.floor( Math.random() * 7 );
+	var piece;
+	
+	switch(result)
+	{
+		case 0: piece = new LPiece();			break;
+		case 1: piece = new BlockPiece();		break;
+		case 2: piece = new ZPiece();			break;
+		case 3: piece = new TPiece();			break;
+		case 4: piece = new ReverseLPiece();	break;
+		case 5: piece = new ReverseZPiece();	break;
+		case 6: piece = new LinePiece();		break;
+	}	
 	
 	piece.color = Math.floor(Math.random() * 8);
 	return piece;
