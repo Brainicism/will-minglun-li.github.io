@@ -1,5 +1,5 @@
 // Get touch screen input for mobile device
-document.body.addEventListener('touchStart', function(e) {
+document.body.addEventListener('touchstart', function(e) {
 	// Make sure the touch input don't scroll the screen
 	e.preventDefault();
 	
@@ -9,7 +9,7 @@ document.body.addEventListener('touchStart', function(e) {
 	touchID = e.touches[0].identifier;
 } );
 
-document.body.addEventListener('touchMove', function(e) {
+document.body.addEventListener('touchmove', function(e) {
 	// Make sure the touch input don't scroll the screen
 	e.preventDefault();
 	
@@ -18,8 +18,8 @@ document.body.addEventListener('touchMove', function(e) {
 	
 	// Move the piece is the displacement reaches a certain value
 	if (diffY > 60){
-		if ( checkMove(curPiece.gridx, curPiece.gridy + 1, curPiece.curState) )
-			curPiece.gridy++;
+		if ( checkMove(currentPiece.gridX, currentPiece.gridY + 1, currentPiece.currentState) )
+			currentPiece.gridY++;
 	}
 	
 } );
@@ -48,22 +48,22 @@ document.body.addEventListener('touchend', function(e) {
 	// If the difference of touch position is below a certain amount, assume it is a tap
 	if (diffX < 10 && diffY < 10){
 		// Change the state of the piece
-		var newState = curPiece.curState - 1;
+		var newState = currentPiece.currentState - 1;
 		
 		if(newState < 0)
-			newState = curPiece.states.length - 1;
+			newState = currentPiece.states.length - 1;
 			
-		if ( checkMove(curPiece.gridx, curPiece.gridy, newState) )
-			curPiece.curState = newState;
+		if ( checkMove(currentPiece.gridX, currentPiece.gridY, newState) )
+			currentPiece.currentState = newState;
 	}
 	else if (diffX > diffY){
 		if (touchEndX < touchX){ // If the user swipes left, move the piece left
-			if ( checkMove(curPiece.gridx - 1, curPiece.gridy, curPiece.curState) )
-				curPiece.gridx--;
+			if ( checkMove(currentPiece.gridX - 1, currentPiece.gridY, currentPiece.currentState) )
+				currentPiece.gridX--;
 		}
 	else{	// else if the user swipes right, move the piece right
-		if ( checkMove(curPiece.gridx + 1, curPiece.gridy, curPiece.curState) )
-			curPiece.gridx++;
+		if ( checkMove(currentPiece.gridX + 1, currentPiece.gridY, currentPiece.currentState) )
+			currentPiece.gridX++;
 		}
 	}
 	
@@ -85,34 +85,34 @@ function getInput(e){
 		switch (e.keyCode){
 			case 37:	// Left arrow, the piece will go left if the move is valid
 				{
-					if(checkMove(curPiece.gridx - 1, curPiece.gridy, curPiece.curState))
-						curPiece.gridx--;
+					if(checkMove(currentPiece.gridX - 1, currentPiece.gridY, currentPiece.currentState))
+						currentPiece.gridX--;
 				}
 				break;
 				
 			case 39:	// Right arrow, the piece will go right if the move is valid
 				{
-					if(checkMove(curPiece.gridx + 1, curPiece.gridy, curPiece.curState))
-						curPiece.gridx++;
+					if(checkMove(currentPiece.gridX + 1, currentPiece.gridY, currentPiece.currentState))
+						currentPiece.gridX++;
 				}
 				break;
 				
 			case 38:	// Up arrow, will change state if the situation is valid
 				{
-					var newState = curPiece.curState - 1;
+					var newState = currentPiece.currentState - 1;
 					if (newState < 0)
-						newState = curPiece.states.length - 1;
+						newState = currentPiece.states.length - 1;
 						
-					if(checkMove(curPiece.gridx, curPiece.gridy, newState)){
-						curPiece.curState = newState; 				
+					if(checkMove(currentPiece.gridX, currentPiece.gridY, newState)){
+						currentPiece.currentState = newState; 				
 					}
 				}
 				break;
 				
 			case 40:	// Down arrow, the piece will move down if the move is valid
 				{
-					if(checkMove(curPiece.gridx, curPiece.gridy + 1, curPiece.curState))
-						curPiece.gridy++;
+					if(checkMove(currentPiece.gridX, currentPiece.gridY + 1, currentPiece.currentState))
+						currentPiece.gridY++;
 				}
 				break;
 		}
