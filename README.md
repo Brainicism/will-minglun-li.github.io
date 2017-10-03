@@ -6,4 +6,4 @@ If you want to use the source code, feel free to do so, that's one of the main r
 
 The website will work on mobile devices, however, please use a computer for a better experience. Although I added mobile and smaller screen resolutions, some features simply doesn't display on mobile devices. I will try my best to fix the issues and make the website more mobile-friendly.
 
-[Visit my Website](http://www.minglunli.com/)
+[Visit my Website](http://will-minglun-li.github.io/)
